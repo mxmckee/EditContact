@@ -61,7 +61,13 @@ public class TargetActivity extends Activity {
     }
 
     public void onWebButtonClick(View view) {
-        String webUri = String.format("https://%s", c.getWebsite());
+        String webUri = null;
+        if (c.getWebsite().contains("https://") || c.getWebsite().contains("http://")) {
+            webUri = c.getWebsite();
+        }
+        else {
+            webUri = String.format("https://%s", c.getWebsite());
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(webUri));
         startActivity(intent);
     }
